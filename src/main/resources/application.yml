@@ -1,0 +1,9 @@
+spring:
+  datasource:
+    driverClassName: org.h2.Driver
+    url: jdbc:h2:file:schedule/schedule
+    username: admin
+    password: passw0rd
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
