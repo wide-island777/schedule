@@ -6,15 +6,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.hiro.shi.domain.model.Account;
-import com.hiro.shi.domain.service.AccountService;
+import com.hiro.shi.domain.model.User;
+import com.hiro.shi.domain.service.UserService;
 
 @Controller
 @RequestMapping("/login")
 public class LoginController {
 
 	@Autowired
-	AccountService accountService;
+	UserService accountService;
 
 	@RequestMapping(value = "", method = RequestMethod.GET)
 	public String loginForm() {
@@ -30,7 +30,7 @@ public class LoginController {
 
 	@RequestMapping(value = "save", method = RequestMethod.POST)
 	public String save(@RequestParam(value = "name") String name, @RequestParam(value = "password") String password) {
-		Account account = new Account();
+		User account = new User();
 		account.setName(name);
 		account.setPassword(password);
 
@@ -39,13 +39,13 @@ public class LoginController {
 		return "login";
 	}
 	
-	@RequestMapping(value = "auth", method = RequestMethod.GET)
+	@RequestMapping(value = "auth", method = RequestMethod.POST)
 	public String auth(@RequestParam(value = "name") String name, @RequestParam(value = "password") String password) {
-		Account account = new Account();
+		User account = new User();
 		account.setName(name);
 		account.setPassword(password);
 		
-		boolean loginSucess = accountService.findAccount(account);
+		boolean loginSucess = accountService.findUser(account);
 		
 		return loginSucess ? "top" : "login";
 	}
