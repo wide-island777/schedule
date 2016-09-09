@@ -2,22 +2,24 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="ja">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>Insert title here</title>
+<title>ログイン</title>
+<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+<link type="text/css" rel="stylesheet" href="../css/materialize.min.css"  media="screen,projection"/>
 </head>
 <body>
-<form action="/login/auth" method="get">
+<form action="/schedule/login/auth" method="post">
 	<div>
 		<span>user</span>
 		<input type="text" name="name"/>
 	</div>
 	<div>
 		<span>password</span>
-		<input type="text" name="password"/>
+		<input type="password" name="password"/>
 	</div>
 	<div>
 		<input type="submit" value="ログイン"/>
 	</div>
 </form>
-<a href="/login/entryForm">新規登録</a>
+<a href="/schedule/login/entryForm">新規登録</a>
 </body>
 </html>
