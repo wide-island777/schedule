@@ -1,17 +1,11 @@
 package com.hiro.shi.security;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
-import org.springframework.security.config.annotation.authentication.configurers.GlobalAuthenticationConfigurerAdapter;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
-
-import com.hiro.shi.domain.service.UserDetailsServiceImpl;
 
 @Configuration
 @EnableWebSecurity
@@ -40,17 +34,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 		// ログアウト設定
 		http.logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout**")).logoutSuccessUrl("/login");
-	}
-
-	@Configuration
-	protected static class AuthenticationConfiguration extends GlobalAuthenticationConfigurerAdapter {
-		@Autowired
-		UserDetailsServiceImpl userDetailsService;
-
-		public void init(AuthenticationManagerBuilder auth) throws Exception {
-			// 認証するユーザを設定する
-			auth.userDetailsService(userDetailsService).passwordEncoder(new BCryptPasswordEncoder());
-		}
 	}
 
 }

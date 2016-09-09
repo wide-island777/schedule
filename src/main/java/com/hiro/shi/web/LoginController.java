@@ -40,13 +40,6 @@ public class LoginController {
 	}
 	
 	@RequestMapping(value = "auth", method = RequestMethod.POST)
-	public String auth(@RequestParam(value = "name") String name, @RequestParam(value = "password") String password) {
-		User account = new User();
-		account.setName(name);
-		account.setPassword(password);
-		
-		boolean loginSucess = userService.findUser(account);
-		
-		return loginSucess ? "top" : "login";
+	public void auth() {
 	}
 }
