@@ -18,10 +18,10 @@ public class UserService {
 	public User save(User user) {
 		return userRepo.save(user);
 	}
-	
+
 	public boolean findUser(User account) {
 		User exitsUser = userRepo.findUser(account.getName(), account.getPassword());
-		
+
 		return exitsUser != null;
 	}
 }

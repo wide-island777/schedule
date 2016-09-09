@@ -14,7 +14,7 @@ import com.hiro.shi.domain.service.UserService;
 public class LoginController {
 
 	@Autowired
-	UserService accountService;
+	UserService userService;
 
 	@RequestMapping(value = "", method = RequestMethod.GET)
 	public String loginForm() {
@@ -34,19 +34,12 @@ public class LoginController {
 		account.setName(name);
 		account.setPassword(password);
 
-		accountService.save(account);
+		userService.save(account);
 
 		return "login";
 	}
 	
 	@RequestMapping(value = "auth", method = RequestMethod.POST)
-	public String auth(@RequestParam(value = "name") String name, @RequestParam(value = "password") String password) {
-		User account = new User();
-		account.setName(name);
-		account.setPassword(password);
-		
-		boolean loginSucess = accountService.findUser(account);
-		
-		return loginSucess ? "top" : "login";
+	public void auth() {
 	}
 }
