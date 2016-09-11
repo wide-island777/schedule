@@ -13,17 +13,19 @@
 		<li th:each="todo : ${todoList}">
 			<div><span>名前</span><span th:text="${todo.name} ?: '未設定'"></span></div>
 			<div><span>場所</span><span th:text="${todo.place} ?: '未設定'"></span></div>
-			<div><span>予定日</span><span th:text="${todo.plandate} ?: '未設定'"></span></div>
+			<div><span>予定日</span><span th:text="${todo.planDate} ?: '未設定'"></span></div>
 			<div><span>終了日</span><span th:text="${todo.finishDate} ?: '未設定'"></span></div>
 			<div><span>ステータス</span><span th:text="${todo.status} ?: '未設定'"></span></div>
 			<div><span>作成者</span><span th:text="${todo.createUserId} ?: '未設定'"></span></div>
 		</li>
 	</ul>
 
-	<form action="/todo/save" method="post">
+	<form action="/schedule/todo/save" method="post">
 			<div><span>名前</span><input type="text" name="name" /></div>
 			<div><span>場所</span><input type="text" name="place" /></div>
+<!-- 
 			<div><span>予定日</span><input type="text" name="planDate" /></div>
+ -->
 		<input type="submit" value="作成" />
 	</form>
 </body>

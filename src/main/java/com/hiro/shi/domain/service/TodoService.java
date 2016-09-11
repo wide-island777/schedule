@@ -2,6 +2,8 @@ package com.hiro.shi.domain.service;
 
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -13,10 +15,13 @@ import com.hiro.shi.domain.repository.TodoRepository;
 @Transactional
 public class TodoService {
 
+	private static Logger logger = LoggerFactory.getLogger(TodoService.class);
+	
 	@Autowired
 	TodoRepository todoRepo;
 
 	public Todo save(Todo todo) {
+		logger.info("名前: " + todo.getName() + "場所: " + todo.getPlace());
 		return todoRepo.save(todo);
 	}
 	

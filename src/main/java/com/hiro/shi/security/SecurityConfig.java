@@ -29,7 +29,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		http.csrf().disable().formLogin().loginProcessingUrl("/login/auth") // 認証処理のパス
 				.loginPage("/login") // ログインフォームのパス
 				.failureHandler(new OriginalAuthenticationFailureHandler()) // 認証失敗時に呼ばれるハンドラクラス
-				.defaultSuccessUrl("/top").usernameParameter("name").passwordParameter("password") // ユーザ名、パスワードのパラメータ名
+				.defaultSuccessUrl("/top")
+				.usernameParameter("name").passwordParameter("password") // ユーザ名、パスワードのパラメータ名
 				.and();
 
 		// ログアウト設定
