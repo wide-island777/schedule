@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>やることリスト</title>
 <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
-<link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection" />
+<link type="text/css" rel="stylesheet" href="../css/materialize.min.css" media="screen,projection" />
 </head>
 <body>
 	<!-- やることリスト -->
@@ -20,9 +20,9 @@
 		</li>
 	</ul>
 
-	<form action="/schedule/todo/save" method="post">
-			<div><span>名前</span><input type="text" name="name" /></div>
-			<div><span>場所</span><input type="text" name="place" /></div>
+	<form action="/schedule/todo/save" method="post" th:object="${todo}">
+			<div><span>名前</span><input type="text" name="name" th:field="*{name}"/></div>
+			<div><span>場所</span><input type="text" name="place" th:field="*{place}" /></div>
 <!-- 
 			<div><span>予定日</span><input type="text" name="planDate" /></div>
  -->

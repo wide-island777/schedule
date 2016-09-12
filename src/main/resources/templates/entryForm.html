@@ -7,18 +7,20 @@
 <link type="text/css" rel="stylesheet" href="../css/materialize.min.css"  media="screen,projection"/>
 </head>
 <body>
-<form action="/schedule/login/save" method="post">
-	<div>
-		<span>user</span>
-		<input type="text" name="name"/>
-	</div>
-	<div>
-		<span>password</span>
-		<input type="text" name="password"/>
-	</div>
-	<div>
-		<input type="submit" value="登録"/>
-	</div>
-</form>
+<div class="mainContents">
+	<form th:action="/schedule/login/save" method="post">
+		<div>
+			<label for="name">name</label>
+			<input type="text" name="name"/>
+		</div>
+		<div>
+			<label for="password">password</label>
+			<input type="password" name="password"/>
+		</div>
+		<div>
+			<input type="submit" value="登録"/>
+		</div>
+	</form>
+</div>
 </body>
 </html>

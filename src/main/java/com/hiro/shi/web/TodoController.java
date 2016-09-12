@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -36,10 +37,7 @@ public class TodoController {
 	}
 
 	@RequestMapping(value = "save", method = RequestMethod.POST)
-	public String saveTodo(@RequestParam("name") String name, @RequestParam("place") String place, Model model) {
-		Todo todo = new Todo();
-		todo.setName(name);
-		todo.setPlace(place);
+	public String saveTodo(@ModelAttribute("todo") Todo todo, Model model) {
 		todoService.save(todo);
 		// 一覧画面を返す
 		return getAllTodo(model);
