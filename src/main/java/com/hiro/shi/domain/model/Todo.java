@@ -8,6 +8,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.Length;
+
 
 @Entity
 @Table(name = "todo")
@@ -18,9 +22,13 @@ public class Todo {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
 
+	@NotNull
+	@Length(max = 100)
 	@Column(name = "name")
 	private String name;
 	
+	@NotNull
+	@Length(max = 100)
 	@Column(name = "place")
 	private String place;
 	
@@ -30,6 +38,7 @@ public class Todo {
 	@Column(name = "finishDate")
 	private Date finishDate;
 	
+	@NotNull
 	@Column(name = "status")
 	private String status;
 
