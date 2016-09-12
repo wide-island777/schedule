@@ -1,6 +1,9 @@
 package com.hiro.shi.web;
 
+import java.util.Collections;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,7 +13,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.hiro.shi.domain.model.Todo;
 import com.hiro.shi.domain.service.TodoService;
@@ -23,6 +25,14 @@ public class TodoController {
 	TodoService todoService;
 	
 	private static Logger logger = LoggerFactory.getLogger(TodoController.class);
+	
+	final static Map<String, String> STATUS_ITEMS = Collections.unmodifiableMap(new LinkedHashMap<String, String>() {
+		{
+			put("未計画", "0");
+			put("計画中", "1");
+			put("達成済", "2");
+		}
+	});
 
 	/**
 	 * すべてのTodoを指定します。
@@ -32,12 +42,14 @@ public class TodoController {
 	@RequestMapping(value = "list", method = RequestMethod.GET)
 	public String getAllTodo(Model model) {
 		List<Todo> todoList = todoService.findAllTodo();
+		model.addAttribute("statusItems", STATUS_ITEMS);
+		model.addAttribute("todoForm", new Todo());
 		model.addAttribute("todoList", todoList);
 		return "todo";
 	}
 
 	@RequestMapping(value = "save", method = RequestMethod.POST)
-	public String saveTodo(@ModelAttribute("todo") Todo todo, Model model) {
+	public String saveTodo(@ModelAttribute("todoForm") Todo todo, Model model) {
 		todoService.save(todo);
 		// 一覧画面を返す
 		return getAllTodo(model);

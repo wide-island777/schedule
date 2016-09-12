@@ -6,7 +6,7 @@ spring:
     password: passw0rd
   jpa:
     hibernate:
-      ddl-auto: create-drop
+      ddl-auto: update
 server:
   contextPath: /schedule
   

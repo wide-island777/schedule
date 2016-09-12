@@ -1,6 +1,6 @@
 package com.hiro.shi.domain.model;
 
-import java.sql.Timestamp;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -25,10 +25,10 @@ public class Todo {
 	private String place;
 	
 	@Column(name = "planDate")
-	private Timestamp planDate;
+	private Date planDate;
 
 	@Column(name = "finishDate")
-	private Timestamp finishDate;
+	private Date finishDate;
 	
 	@Column(name = "status")
 	private String status;
@@ -60,19 +60,19 @@ public class Todo {
 		this.place = place;
 	}
 
-	public Timestamp getPlanDate() {
+	public Date getPlanDate() {
 		return planDate;
 	}
 
-	public void setPlanDate(Timestamp planDate) {
+	public void setPlanDate(Date planDate) {
 		this.planDate = planDate;
 	}
 
-	public Timestamp getFinishDate() {
+	public Date getFinishDate() {
 		return finishDate;
 	}
 
-	public void setFinishDate(Timestamp finishDate) {
+	public void setFinishDate(Date finishDate) {
 		this.finishDate = finishDate;
 	}
 

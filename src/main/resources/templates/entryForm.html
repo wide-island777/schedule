@@ -3,24 +3,37 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>ユーザ登録</title>
-<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
-<link type="text/css" rel="stylesheet" href="../css/materialize.min.css"  media="screen,projection"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<link type="text/css" rel="stylesheet" href="/schedule/css/materialize.min.css"  media="screen,projection"/>
+<script src="/schedule/js/jquery-3.1.0.min.js" ></script>
+<script src="/schedule/js/materialize.min.js" ></script>
 </head>
 <body>
-<div class="mainContents">
-	<form th:action="/schedule/login/save" method="post">
-		<div>
-			<label for="name">name</label>
-			<input type="text" name="name"/>
-		</div>
-		<div>
-			<label for="password">password</label>
-			<input type="password" name="password"/>
-		</div>
-		<div>
-			<input type="submit" value="登録"/>
-		</div>
-	</form>
+<div class="container">
+	<div class="row">
+		<form action="/schedule/login/save" method="post" class="">
+			<div class="row margin">
+				<div class="input-field col s12 center">
+					<i class="medium material-icons prefix">perm_identity</i>
+					<input type="text" name="name"/>
+					<label for="name" class="center-align">user</label>
+				</div>
+			</div>
+			<div class="row margin">
+				<div class="input-field col s12 center">
+					<i class="medium material-icons prefix">vpn_key</i>
+					<label for="password" class="center-align">password</label>
+					<input type="password" name="password"/>
+				</div>
+			</div>
+			<div class="row margin">
+				<div class="input-field col s12">
+					<input type="submit" value="ログイン" class="btn waves-effect waves-light col s12"/>
+				</div>
+			</div>
+		</form>
+	</div>
 </div>
 </body>
 </html>
