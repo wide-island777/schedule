@@ -46,35 +46,49 @@
 		</li>
 	</ul>
 
-	<form action="/schedule/todo/save" method="post"
-		th:object="${todoForm}">
-		<div class="input-field">
-			<i class="medium material-icons">label</i> <label for="name">予定</label>
-			<input type="text" name="name" th:field="*{name}" />
-		</div>
-		<div class="input-field">
-			<i class="medium material-icons">my_location</i> <label for="place">場所</label>
-			<input type="text" name="place" th:field="*{place}" />
-		</div>
-		<div class="input-field">
-			<i class="medium material-icons">schedule</i> <label for="planDate">予定日</label>
-			<input type="date" name="planDate" th:field="*{planDate}"
-				class="datepicker" />
-		</div>
-		<div class="input-field">
-			<i class="medium material-icons">done_all</i> <label for="finishDate">終了日</label>
-			<input type="date" name="finishDate" th:field="*{finishDate}"
-				class="datepicker" />
-		</div>
-		<div class="input-field">
-			<i class="medium material-icons">spellcheck</i> <select name="status">
-				<option th:each="statusItem: ${statusItems}"
-					th:text="${statusItem.key}" th:value="${statusItem.value}"
-					th:selected="${statusItem.value} == *{status}" />
-			</select> <label for="status">ステータス</label>
-		</div>
-		<input type="submit" value="作成"
-			class="btn waves-effect waves-light col s12" />
-	</form>
+	<!-- Modal Trigger -->
+	<a class="modal-trigger waves-effect waves-light btn" href="#todoEntry">Modal</a>
+
+	<!-- Modal Structure -->
+	<div id="todoEntry" class="modal modal-fixed-footer">
+		<form action="/schedule/todo/save" method="post"
+			th:object="${todoForm}">
+			<div class="modal-content">
+				<h4>予定登録</h4>
+				<div class="input-field">
+					<i class="medium material-icons">label</i> <label for="name">予定</label>
+					<input type="text" name="name" th:field="*{name}" />
+				</div>
+				<div class="input-field">
+					<i class="medium material-icons">my_location</i> <label for="place">場所</label>
+					<input type="text" name="place" th:field="*{place}" />
+				</div>
+				<div class="input-field">
+					<i class="medium material-icons">schedule</i> <label for="planDate">予定日</label>
+					<input type="date" name="planDate" th:field="*{planDate}"
+						class="datepicker" />
+				</div>
+				<div class="input-field">
+					<i class="medium material-icons">done_all</i> <label
+						for="finishDate">終了日</label> <input type="date" name="finishDate"
+						th:field="*{finishDate}" class="datepicker" />
+				</div>
+				<div class="input-field">
+					<i class="medium material-icons">spellcheck</i> <select
+						name="status">
+						<option th:each="statusItem: ${statusItems}"
+							th:text="${statusItem.key}" th:value="${statusItem.value}"
+							th:selected="${statusItem.value} == *{status}" />
+					</select> <label for="status">ステータス</label>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<input type="submit" value="作成"
+					class="modal-action modal-close waves-effect waves-green btn-flat" />
+			</div>
+		</form>
+	</div>
+
+
 </body>
 </html>
