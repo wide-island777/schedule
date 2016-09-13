@@ -5,11 +5,14 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.validation.Valid;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -23,9 +26,9 @@ public class TodoController {
 
 	@Autowired
 	TodoService todoService;
-	
+
 	private static Logger logger = LoggerFactory.getLogger(TodoController.class);
-	
+
 	final static Map<String, String> STATUS_ITEMS = Collections.unmodifiableMap(new LinkedHashMap<String, String>() {
 		{
 			put("未計画", "0");
@@ -49,10 +52,13 @@ public class TodoController {
 	}
 
 	@RequestMapping(value = "save", method = RequestMethod.POST)
-	public String saveTodo(@ModelAttribute("todoForm") Todo todo, Model model) {
+	public String saveTodo(Model model, @ModelAttribute("todoForm") @Valid Todo todo, BindingResult result) {
+		if (result.hasErrors()) {
+			return "todo";
+		}
 		todoService.save(todo);
 		// 一覧画面を返す
-		return getAllTodo(model);
+		return "redirect:list";
 	}
 
 	/**
