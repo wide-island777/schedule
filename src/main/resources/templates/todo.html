@@ -39,6 +39,9 @@
 							<div>
 								<span th:text="${todo.createUserId} ?: '未設定'"></span>
 							</div>
+							<input type="hidden" th:value="${todo.id}" />
+
+							<div><a th:href="/todo/delete"></a></div>
 						</div>
 					</div>
 				</div>
@@ -56,25 +59,25 @@
 			<div class="modal-content">
 				<h4>予定登録</h4>
 				<div class="input-field">
-					<i class="medium material-icons">label</i> <label for="name">予定</label>
+					<i class="samll material-icons">label</i> <label for="name">予定</label>
 					<input type="text" name="name" th:field="*{name}" />
 				</div>
 				<div class="input-field">
-					<i class="medium material-icons">my_location</i> <label for="place">場所</label>
+					<i class="samll material-icons">my_location</i> <label for="place">場所</label>
 					<input type="text" name="place" th:field="*{place}" />
 				</div>
 				<div class="input-field">
-					<i class="medium material-icons">schedule</i> <label for="planDate">予定日</label>
+					<i class="samll material-icons">schedule</i> <label for="planDate">予定日</label>
 					<input type="date" name="planDate" th:field="*{planDate}"
 						class="datepicker" />
 				</div>
 				<div class="input-field">
-					<i class="medium material-icons">done_all</i> <label
+					<i class="samll material-icons">done_all</i> <label
 						for="finishDate">終了日</label> <input type="date" name="finishDate"
 						th:field="*{finishDate}" class="datepicker" />
 				</div>
 				<div class="input-field">
-					<i class="medium material-icons">spellcheck</i> <select
+					<i class="samll material-icons">spellcheck</i> <select
 						name="status">
 						<option th:each="statusItem: ${statusItems}"
 							th:text="${statusItem.key}" th:value="${statusItem.value}"

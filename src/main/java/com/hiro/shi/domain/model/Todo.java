@@ -45,6 +45,16 @@ public class Todo {
 	@Column(name = "createUserId")
 	private String createUserId;
 	
+	// 検索用
+	
+	private String planDateFrom;
+	
+	private String planDateTo;
+	
+	private String finishDateFrom;
+	
+	private String finishDateTo;
+	
 	public Integer getId() {
 		return id;
 	}
@@ -99,6 +109,38 @@ public class Todo {
 
 	public void setCreateUserId(String createUserId) {
 		this.createUserId = createUserId;
+	}
+
+	public String getPlanDateFrom() {
+		return planDateFrom;
+	}
+
+	public void setPlanDateFrom(String planDateFrom) {
+		this.planDateFrom = planDateFrom;
+	}
+
+	public String getPlanDateTo() {
+		return planDateTo;
+	}
+
+	public void setPlanDateTo(String planDateTo) {
+		this.planDateTo = planDateTo;
+	}
+
+	public String getFinishDateFrom() {
+		return finishDateFrom;
+	}
+
+	public void setFinishDateFrom(String finishDateFrom) {
+		this.finishDateFrom = finishDateFrom;
+	}
+
+	public String getFinishDateTo() {
+		return finishDateTo;
+	}
+
+	public void setFinishDateTo(String finishDateTo) {
+		this.finishDateTo = finishDateTo;
 	}
 
 }

@@ -54,10 +54,17 @@ public class TodoController {
 	@RequestMapping(value = "save", method = RequestMethod.POST)
 	public String saveTodo(Model model, @ModelAttribute("todoForm") @Valid Todo todo, BindingResult result) {
 		if (result.hasErrors()) {
-			return "todo";
+			return "redirect:list";
 		}
 		todoService.save(todo);
 		// 一覧画面を返す
+		return "redirect:list";
+	}
+	
+	@RequestMapping(value = "find", method = RequestMethod.GET)
+	public String findTodo(Model model, @ModelAttribute("") Todo findParam, BindingResult result) {
+		
+		
 		return "redirect:list";
 	}
 
