@@ -46,13 +46,14 @@ public class TodoController {
 	public String getAllTodo(Model model) {
 		List<Todo> todoList = todoService.findAllTodo();
 		model.addAttribute("statusItems", STATUS_ITEMS);
-		model.addAttribute("todoForm", new Todo());
+		model.addAttribute("todoEntry", new Todo());
+		model.addAttribute("todoFind", new Todo());
 		model.addAttribute("todoList", todoList);
 		return "todo";
 	}
 
 	@RequestMapping(value = "save", method = RequestMethod.POST)
-	public String saveTodo(Model model, @ModelAttribute("todoForm") @Valid Todo todo, BindingResult result) {
+	public String saveTodo(Model model, @ModelAttribute("todoEntry") @Valid Todo todo, BindingResult result) {
 		if (result.hasErrors()) {
 			return "redirect:list";
 		}
@@ -62,59 +63,9 @@ public class TodoController {
 	}
 	
 	@RequestMapping(value = "find", method = RequestMethod.GET)
-	public String findTodo(Model model, @ModelAttribute("") Todo findParam, BindingResult result) {
+	public String findTodo(Model model, @ModelAttribute("todoFind") @Valid Todo findParam, BindingResult result) {
 		
 		
 		return "redirect:list";
-	}
-
-	/**
-	 * ステータスが未着手(0)のTodoを指定します
-	 * 
-	 * @return
-	 */
-	public String getNotStartTodo() {
-
-		return "list";
-	}
-
-	/**
-	 * ステータスが計画中(1)のTodoを指定します
-	 * 
-	 * @return
-	 */
-	public String getPlanningTodo() {
-
-		return "list";
-	}
-
-	/**
-	 * ステータスが計画中(1)のTodoを指定します
-	 * 
-	 * @return
-	 */
-	public String getFinishedTodo() {
-
-		return "list";
-	}
-
-	/**
-	 * IDで指定してTodoを取得します
-	 * 
-	 * @return
-	 */
-	public String getTodo() {
-
-		return "todo";
-	}
-
-	/**
-	 * 作成者で限定してTodoを絞り込んで取得します
-	 * 
-	 * @return
-	 */
-	public String getTodoLimitedCreater() {
-
-		return "todo";
 	}
 }

@@ -13,6 +13,36 @@
 <script src="/schedule/js/common.js"></script>
 </head>
 <body>
+	<!-- 検索用フォーム -->
+	<form action="/schedule/todo/find" method="get" th:object="${todoFind}">
+		<div class="row">
+			<div class="col s4 input-field">
+				<i class="samll material-icons">label</i> <label for="name">予定</label>
+				<input type="text" name="name" th:field="*{name}" />
+			</div>
+			<div class="col s4 input-field">
+				<i class="samll material-icons">my_location</i> <label for="place">場所</label>
+				<input type="text" name="place" th:field="*{place}" />
+			</div>
+			<div class="col s4 input-field">
+				<i class="samll material-icons">schedule</i> <label for="planDate">予定日</label>
+				<input type="date" name="planDate" th:field="*{planDate}" class="datepicker" />
+			</div>
+			<div class="col s4 input-field">
+				<i class="samll material-icons">done_all</i><label for="finishDate">終了日</label>
+				<input type="date" name="finishDate" th:field="*{finishDate}" class="datepicker" />
+			</div>
+			<div class="col s4 input-field">
+					<i class="samll material-icons">spellcheck</i> <select
+						name="status">
+						<option th:each="statusItem: ${statusItems}"
+							th:text="${statusItem.key}" th:value="${statusItem.value}"
+							th:selected="${statusItem.value} == *{status}" />
+					</select> <label for="status">ステータス</label>
+			</div>
+		</div>
+	</form>
+	
 	<!-- やることリスト -->
 	<!-- やること登録と編集-->
 	<ul>
@@ -41,7 +71,9 @@
 							</div>
 							<input type="hidden" th:value="${todo.id}" />
 
+<!-- 
 							<div><a th:href="/todo/delete"></a></div>
+ -->
 						</div>
 					</div>
 				</div>
@@ -55,7 +87,7 @@
 	<!-- Modal Structure -->
 	<div id="todoEntry" class="modal modal-fixed-footer">
 		<form action="/schedule/todo/save" method="post"
-			th:object="${todoForm}">
+			th:object="${todoEntry}">
 			<div class="modal-content">
 				<h4>予定登録</h4>
 				<div class="input-field">
