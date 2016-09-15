@@ -16,6 +16,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.hiro.shi.domain.model.Todo;
 import com.hiro.shi.domain.service.TodoService;
@@ -61,7 +62,15 @@ public class TodoController {
 		// 一覧画面を返す
 		return "redirect:list";
 	}
-	
+
+	@RequestMapping(value = "delete", method = RequestMethod.DELETE)
+	public String deleteTodo(Model model, @RequestParam("id") int id, BindingResult result) {
+		Todo todo = new Todo();
+		todo.setId(id);
+		todoService.delete(todo);
+		return "redirect:list";
+	}
+
 	@RequestMapping(value = "find", method = RequestMethod.GET)
 	public String findTodo(Model model, @ModelAttribute("todoFind") @Valid Todo findParam, BindingResult result) {
 		List<Todo> searchResult = todoService.searchTodo(findParam);
