@@ -10,7 +10,7 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 
 	@Query("select u from User u where u.name = :name and password = :password")
 	public User findUser(@Param("name") String name, @Param("password") String password);
-	
+
 	@Query("select u from User u where u.name = :name")
 	public User findUser(@Param("name") String name);
 }

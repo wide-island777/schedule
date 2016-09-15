@@ -64,8 +64,11 @@ public class TodoController {
 	
 	@RequestMapping(value = "find", method = RequestMethod.GET)
 	public String findTodo(Model model, @ModelAttribute("todoFind") @Valid Todo findParam, BindingResult result) {
-		
-		
-		return "redirect:list";
+		List<Todo> searchResult = todoService.searchTodo(findParam);
+		model.addAttribute("statusItems", STATUS_ITEMS);
+		model.addAttribute("todoEntry", new Todo());
+		model.addAttribute("todoFind", new Todo());
+		model.addAttribute("todoList", searchResult);
+		return "todo";
 	}
 }

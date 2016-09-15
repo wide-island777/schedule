@@ -16,7 +16,7 @@ import com.hiro.shi.domain.repository.TodoRepository;
 public class TodoService {
 
 	private static Logger logger = LoggerFactory.getLogger(TodoService.class);
-	
+
 	@Autowired
 	TodoRepository todoRepo;
 
@@ -24,8 +24,12 @@ public class TodoService {
 		logger.info("名前: " + todo.getName() + "場所: " + todo.getPlace());
 		return todoRepo.save(todo);
 	}
-	
+
 	public List<Todo> findAllTodo() {
 		return todoRepo.findAllTodo();
+	}
+	
+	public List<Todo> searchTodo(Todo todo) {
+		return todoRepo.searchTodo(todo);
 	}
 }
