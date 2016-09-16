@@ -82,11 +82,10 @@
 								<div>
 									<span th:text="${todo.createUserId} ?: '未設定'"></span>
 								</div>
-								<form action="/todo/delete">
-									<input type="hidden" th:value="${todo.id}" />
+								<form action="/schedule/todo/delete" th:method="delete">
+									<input type="hidden" th:value="${todo.id}" name="id" />
 									<div><input type="submit" value="削除" /></div>
 								</form>
-	
 							</div>
 						</div>
 					</div>

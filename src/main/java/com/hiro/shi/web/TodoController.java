@@ -64,9 +64,9 @@ public class TodoController {
 	}
 
 	@RequestMapping(value = "delete", method = RequestMethod.DELETE)
-	public String deleteTodo(Model model, @RequestParam("id") int id, BindingResult result) {
+	public String deleteTodo(@RequestParam("id") String id) {
 		Todo todo = new Todo();
-		todo.setId(id);
+		todo.setId(Integer.parseInt(id));
 		todoService.delete(todo);
 		return "redirect:list";
 	}
