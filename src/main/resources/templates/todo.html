@@ -89,9 +89,8 @@
 									<span th:text="${todo.createUserId} ?: '未設定'"></span>
 								</div>
 								<form action="/schedule/todo/delete" th:method="delete">
-									<a class="waves-effect waves-light btn modal-trigger"
-										href="#modal1?">delete</a> <input type="hidden"
-										th:value="${todo.id}" name="id" />
+									<a class="waves-effect waves-light btn modal-trigger" data-id="${todo.id}"
+										href="#modal1?">delete</a>
 								</form>
 							</div>
 						</div>
@@ -104,7 +103,8 @@
 		<div id="modal1" class="modal">
 			<div class="modal-content">Are you sure?</div>
 			<div class="modal-footer">
-				<input type="button" class=" modal-action modal-close waves-effect waves-green btn-flat" id="todoDelete">delete</inpiut>
+				<input type="hidden" value="" id="deleteId" />
+				<input type="button" class=" modal-action modal-close waves-effect waves-green btn-flat" id="todoDelete" value="delete" />
 			</div>
 		</div>
 
@@ -114,7 +114,7 @@
 
 		<!-- Modal Structure -->
 		<div id="todoEntry" class="modal modal-fixed-footer">
-			<form action="/schedule/todo/save" method="post"
+			<form action="/schedule/todo/save" method="post"		
 				th:object="${todoEntry}">
 				<div class="modal-content">
 					<h4>予定登録</h4>
