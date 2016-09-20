@@ -53,6 +53,13 @@ public class TodoController {
 		return "todo";
 	}
 
+	/**
+	 * 
+	 * @param model
+	 * @param todo
+	 * @param result
+	 * @return
+	 */
 	@RequestMapping(value = "save", method = RequestMethod.POST)
 	public String saveTodo(Model model, @ModelAttribute("todoEntry") @Valid Todo todo, BindingResult result) {
 		if (result.hasErrors()) {
@@ -63,6 +70,11 @@ public class TodoController {
 		return "redirect:list";
 	}
 
+	/**
+	 * 
+	 * @param id
+	 * @return
+	 */
 	@RequestMapping(value = "delete", method = RequestMethod.DELETE)
 	public String deleteTodo(@RequestParam("id") String id) {
 		Todo todo = new Todo();

@@ -15,7 +15,8 @@
 <body class="loaded">
 	<div class="container">
 		<!-- 検索用フォーム -->
-		<form action="/schedule/todo/find" method="get" th:object="${todoFind}">
+		<form action="/schedule/todo/find" method="get"
+			th:object="${todoFind}">
 			<div class="row">
 				<div class="col s4 input-field">
 					<i class="samll material-icons">label</i> <label for="name">予定</label>
@@ -26,28 +27,33 @@
 					<input type="text" name="place" th:field="*{place}" />
 				</div>
 				<div class="col s4 input-field">
-						<i class="samll material-icons">spellcheck</i> <select
-							name="status">
-							<option th:each="statusItem: ${statusItems}"
-								th:text="${statusItem.key}" th:value="${statusItem.value}"
-								th:selected="${statusItem.value} == *{status}" />
-						</select> <label for="status">ステータス</label>
+					<i class="samll material-icons">spellcheck</i> <select
+						name="status">
+						<option th:each="statusItem: ${statusItems}"
+							th:text="${statusItem.key}" th:value="${statusItem.value}"
+							th:selected="${statusItem.value} == *{status}" />
+					</select> <label for="status">ステータス</label>
 				</div>
 				<div class="col s6 input-field">
-					<i class="samll material-icons">schedule</i> <label for="planDateFrom">予定日From</label>
-					<input type="date" name="planDateFrom" th:field="*{planDateFrom}" class="datepicker" />
+					<i class="samll material-icons">schedule</i> <label
+						for="planDateFrom">予定日From</label> <input type="date"
+						name="planDateFrom" th:field="*{planDateFrom}" class="datepicker" />
 				</div>
 				<div class="col s6 input-field">
-					<i class="samll material-icons">schedule</i> <label for="planDateTo">予定日To</label>
-					<input type="date" name="planDateTo" th:field="*{planDateTo}" class="datepicker" />
+					<i class="samll material-icons">schedule</i> <label
+						for="planDateTo">予定日To</label> <input type="date"
+						name="planDateTo" th:field="*{planDateTo}" class="datepicker" />
 				</div>
 				<div class="col s6 input-field">
-					<i class="samll material-icons">done_all</i><label for="finishDateFrom">終了日From</label>
-					<input type="date" name="finishDateFrom" th:field="*{finishDateFrom}" class="datepicker" />
+					<i class="samll material-icons">done_all</i><label
+						for="finishDateFrom">終了日From</label> <input type="date"
+						name="finishDateFrom" th:field="*{finishDateFrom}"
+						class="datepicker" />
 				</div>
 				<div class="col s6 input-field">
-					<i class="samll material-icons">done_all</i><label for="finishDateTo">終了日To</label>
-					<input type="date" name="finishDateTo" th:field="*{finishDateTo}" class="datepicker" />
+					<i class="samll material-icons">done_all</i><label
+						for="finishDateTo">終了日To</label> <input type="date"
+						name="finishDateTo" th:field="*{finishDateTo}" class="datepicker" />
 				</div>
 				<div class="col s6 input-field">
 					<input type="submit" value="検索"
@@ -55,7 +61,7 @@
 				</div>
 			</div>
 		</form>
-		
+
 		<!-- やることリスト -->
 		<!-- やること登録と編集-->
 		<ul>
@@ -83,8 +89,9 @@
 									<span th:text="${todo.createUserId} ?: '未設定'"></span>
 								</div>
 								<form action="/schedule/todo/delete" th:method="delete">
-									<input type="hidden" th:value="${todo.id}" name="id" />
-									<div><input type="submit" value="削除" /></div>
+									<a class="waves-effect waves-light btn modal-trigger"
+										href="#modal1?">delete</a> <input type="hidden"
+										th:value="${todo.id}" name="id" />
 								</form>
 							</div>
 						</div>
@@ -92,10 +99,19 @@
 				</div>
 			</li>
 		</ul>
-	
+
+		<!-- 削除確認用モーダル -->
+		<div id="modal1" class="modal">
+			<div class="modal-content">Are you sure?</div>
+			<div class="modal-footer">
+				<input type="button" class=" modal-action modal-close waves-effect waves-green btn-flat" id="todoDelete">delete</inpiut>
+			</div>
+		</div>
+
 		<!-- Modal Trigger -->
-		<a class="modal-trigger waves-effect waves-light btn" href="#todoEntry">Modal</a>
-	
+		<a class="modal-trigger waves-effect waves-light btn"
+			href="#todoEntry">create</a>
+
 		<!-- Modal Structure -->
 		<div id="todoEntry" class="modal modal-fixed-footer">
 			<form action="/schedule/todo/save" method="post"
