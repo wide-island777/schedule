@@ -14,6 +14,8 @@ $(document).ready(function() {
 			cache : false,
 		}).done(function(data, textStatus, jqXHR) {
 			Materialize.toast('complate!!!', 3000, 'rounded')
+			// データ削除成功したらTODOカードを削除する
+			$('.todo-card[data-id="' + deleteId + '"]').remove();
 		}).fail(function(data, textStatus, errorThrown) {
 			Materialize.toast('miss!!!', 3000, 'rounded')
 		}).always(function() {
