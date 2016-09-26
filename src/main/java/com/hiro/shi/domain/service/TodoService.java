@@ -28,11 +28,11 @@ public class TodoService {
 	public List<Todo> findAllTodo() {
 		return todoRepo.findAllTodo();
 	}
-	
+
 	public void delete(Todo todo) {
 		todoRepo.delete(todo);
 	}
-	
+
 	public List<Todo> searchTodo(Todo todo) {
 		return todoRepo.searchTodo(todo);
 	}

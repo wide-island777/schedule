@@ -11,6 +11,7 @@
 <script src="/schedule/js/jquery-3.1.0.min.js"></script>
 <script src="/schedule/js/materialize.min.js"></script>
 <script src="/schedule/js/common.js"></script>
+<script src="/schedule/js/todo.js"></script>
 </head>
 <body class="loaded">
 	<div class="container">
@@ -89,8 +90,8 @@
 									<span th:text="${todo.createUserId} ?: '未設定'"></span>
 								</div>
 								<form action="/schedule/todo/delete" th:method="delete">
-									<a class="waves-effect waves-light btn modal-trigger" data-id="${todo.id}"
-										href="#modal1?">delete</a>
+									<a class="waves-effect waves-light btn delete-modal-trigger" th:attr="data-id=${todo.id}"
+										href="#deleteConfirm">delete</a>
 								</form>
 							</div>
 						</div>
@@ -100,10 +101,11 @@
 		</ul>
 
 		<!-- 削除確認用モーダル -->
-		<div id="modal1" class="modal">
+		<div id="deleteConfirm" class="modal">
 			<div class="modal-content">Are you sure?</div>
 			<div class="modal-footer">
 				<input type="hidden" value="" id="deleteId" />
+				<input type="button" class=" modal-action modal-close waves-effect waves-green btn-flat" id="deleteCancel" value="cancel" />
 				<input type="button" class=" modal-action modal-close waves-effect waves-green btn-flat" id="todoDelete" value="delete" />
 			</div>
 		</div>

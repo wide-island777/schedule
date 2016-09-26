@@ -10,13 +10,15 @@ import javax.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseStatus;
 
 import com.hiro.shi.domain.model.Todo;
 import com.hiro.shi.domain.service.TodoService;
@@ -31,6 +33,11 @@ public class TodoController {
 	private static Logger logger = LoggerFactory.getLogger(TodoController.class);
 
 	final static Map<String, String> STATUS_ITEMS = Collections.unmodifiableMap(new LinkedHashMap<String, String>() {
+		/**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;
+
 		{
 			put("未計画", "0");
 			put("計画中", "1");
@@ -75,8 +82,9 @@ public class TodoController {
 	 * @param id
 	 * @return
 	 */
-	@RequestMapping(value = "delete", method = RequestMethod.DELETE)
-	public String deleteTodo(@RequestParam("id") String id) {
+	@RequestMapping(value = "delete/{id}", method = RequestMethod.DELETE)
+	@ResponseStatus(HttpStatus.NO_CONTENT)
+	public String deleteTodo(@PathVariable("id") String id) {
 		Todo todo = new Todo();
 		todo.setId(Integer.parseInt(id));
 		todoService.delete(todo);
