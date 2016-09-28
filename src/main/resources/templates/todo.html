@@ -56,12 +56,21 @@
 						for="finishDateTo">終了日To</label> <input type="date"
 						name="finishDateTo" th:field="*{finishDateTo}" class="datepicker" />
 				</div>
+				<div class="col s4 input-field">
+					<i class="samll material-icons">mode_edit</i>
+					<label for="memo">memo</label>
+					<input type="text" name="memo" th:field="*{memo}" />
+				</div>
 				<div class="col s6 input-field">
-					<input type="submit" value="検索"
-						class="modal-action modal-close waves-effect waves-green btn-flat" />
+					<button type="submit" 
+						class="modal-action modal-close waves-effect waves-green btn-flat" >search</button>
 				</div>
 			</div>
 		</form>
+
+		<!-- 登録フォーム表示 -->
+		<a class="modal-trigger waves-effect waves-light btn"
+			href="#todoEntry">create</a>
 
 		<!-- やることリスト -->
 		<!-- やること登録と編集-->
@@ -87,7 +96,7 @@
 									<span th:text="${todo.status} ?: '未設定'"></span>
 								</div>
 								<div>
-									<span th:text="${todo.createUserId} ?: '未設定'"></span>
+									<span th:text="${todo.memo} ?: '未設定'"></span>
 								</div>
 								<form action="/schedule/todo/delete" th:method="delete">
 									<a class="waves-effect waves-light btn delete-modal-trigger" th:attr="data-id=${todo.id}"
@@ -110,45 +119,51 @@
 			</div>
 		</div>
 
-		<!-- Modal Trigger -->
-		<a class="modal-trigger waves-effect waves-light btn"
-			href="#todoEntry">create</a>
-
-		<!-- Modal Structure -->
+		<!-- 入力モーダル -->
 		<div id="todoEntry" class="modal modal-fixed-footer">
-			<form action="/schedule/todo/save" method="post"		
-				th:object="${todoEntry}">
+			<form action="/schedule/todo/save" method="post" th:object="${todoEntry}">
 				<div class="modal-content">
 					<h4>予定登録</h4>
 					<div class="input-field">
-						<i class="samll material-icons">label</i> <label for="name">予定</label>
-						<input type="text" name="name" th:field="*{name}" />
+						<i class="samll material-icons">label</i>
+						<label for="name">予定</label>
+						<input type="text" name="name" th:field="*{name}" data-error=".errorTxt1"/>
+						<div class="errorTxt1"></div>
 					</div>
 					<div class="input-field">
-						<i class="samll material-icons">my_location</i> <label for="place">場所</label>
-						<input type="text" name="place" th:field="*{place}" />
+						<i class="samll material-icons">my_location</i>
+						<label for="place">場所</label>
+						<input type="text" name="place" th:field="*{place}" data-error=".errorTxt2" />
+						<div class="errorTxt2"></div>
 					</div>
 					<div class="input-field">
-						<i class="samll material-icons">schedule</i> <label for="planDate">予定日</label>
-						<input type="date" name="planDate" th:field="*{planDate}"
-							class="datepicker" />
+						<i class="samll material-icons">schedule</i>
+						<label for="planDate">予定日</label>
+						<input type="date" name="planDate" th:field="*{planDate}" class="datepicker" />
 					</div>
 					<div class="input-field">
-						<i class="samll material-icons">done_all</i> <label
-							for="finishDate">終了日</label> <input type="date" name="finishDate"
-							th:field="*{finishDate}" class="datepicker" />
+						<i class="samll material-icons">done_all</i>
+						<label for="finishDate">終了日</label>
+						<input type="date" name="finishDate" th:field="*{finishDate}" class="datepicker" />
+						<div class="errorTxt4"></div>
 					</div>
 					<div class="input-field">
-						<i class="samll material-icons">spellcheck</i> <select
-							name="status">
-							<option th:each="statusItem: ${statusItems}"
-								th:text="${statusItem.key}" th:value="${statusItem.value}"
-								th:selected="${statusItem.value} == *{status}" />
-						</select> <label for="status">ステータス</label>
+						<i class="samll material-icons">spellcheck</i>
+						<select name="status">
+							<option th:each="statusItem: ${statusItems}" th:text="${statusItem.key}" th:value="${statusItem.value}" th:selected="${statusItem.value} == *{status}" />
+						</select>
+						<label for="status">ステータス</label>
+					</div>
+					<div class="input-field">
+						<i class="samll material-icons">mode_edit</i>
+						<label for="memo">memo</label>
+						<input type="text" name="memo" th:field="*{memo}" data-error=".errorTxt3"/>
+						<div class="errorTxt3"></div>
 					</div>
 				</div>
 				<div class="modal-footer">
-					<input type="submit" value="作成"
+					<input type="button" class=" modal-action modal-close waves-effect waves-green btn-flat" id="entryCancel" value="cancel" />
+					<input type="submit" value="create"
 						class="modal-action modal-close waves-effect waves-green btn-flat" />
 				</div>
 			</form>

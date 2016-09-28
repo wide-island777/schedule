@@ -13,8 +13,5 @@ $(document).ready(function() {
 	});
 	// セレクトボックス作成
 	$('select').material_select();
-
-	// モーダル作成
-	$('.modal-trigger').leanModal();
 	
 });

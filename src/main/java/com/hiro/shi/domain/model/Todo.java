@@ -44,6 +44,9 @@ public class Todo {
 
 	@Column(name = "createUserId")
 	private String createUserId;
+
+	@Column(name = "memo")
+	private String memo;
 	
 	// 検索用
 	
@@ -109,6 +112,14 @@ public class Todo {
 
 	public void setCreateUserId(String createUserId) {
 		this.createUserId = createUserId;
+	}
+
+	public String getMemo() {
+		return memo;
+	}
+
+	public void setMemo(String memo) {
+		this.memo = memo;
 	}
 
 	public String getPlanDateFrom() {
