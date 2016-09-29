@@ -58,16 +58,11 @@ $(document).ready(function() {
 		}
 	});
 	*/
-	
+
 	// 登録モーダル作成
 	$('.modal-trigger').leanModal({
 		dismissible: false
 	});
-	
-	$('#entryCancel').on('click', function() {
-		$('.modal-trigger').closeModal();
-	})
-	
 
 
 });

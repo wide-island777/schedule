@@ -43,7 +43,7 @@ public class Todo {
 	private String status;
 
 	@Column(name = "createUserId")
-	private String createUserId;
+	private Integer createUserId;
 
 	@Column(name = "memo")
 	private String memo;
@@ -106,11 +106,11 @@ public class Todo {
 		this.status = status;
 	}
 
-	public String getCreateUserId() {
+	public Integer getCreateUserId() {
 		return createUserId;
 	}
 
-	public void setCreateUserId(String createUserId) {
+	public void setCreateUserId(Integer createUserId) {
 		this.createUserId = createUserId;
 	}
 

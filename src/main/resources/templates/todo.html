@@ -15,6 +15,9 @@
 </head>
 <body class="loaded">
 	<div class="container">
+<!-- 
+		<div th:text="${loginUser.name}"></div>
+ -->	
 		<!-- 検索用フォーム -->
 		<form action="/schedule/todo/find" method="get"
 			th:object="${todoFind}">
@@ -63,7 +66,7 @@
 				</div>
 				<div class="col s6 input-field">
 					<button type="submit" 
-						class="modal-action modal-close waves-effect waves-green btn-flat" >search</button>
+						class="waves-effect waves-light btn" >search</button>
 				</div>
 			</div>
 		</form>
@@ -97,6 +100,9 @@
 								</div>
 								<div>
 									<span th:text="${todo.memo} ?: '未設定'"></span>
+								</div>
+								<div>
+									<span th:text="${todo.createUserId}"></span>
 								</div>
 								<form action="/schedule/todo/delete" th:method="delete">
 									<a class="waves-effect waves-light btn delete-modal-trigger" th:attr="data-id=${todo.id}"

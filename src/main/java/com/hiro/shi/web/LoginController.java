@@ -31,9 +31,6 @@ public class LoginController {
 	@RequestMapping(value = "save", method = RequestMethod.POST)
 	public String save(@RequestParam(value = "name") String name, @RequestParam(value = "password") String password) {
 		User account = new User();
-		account.setName(name);
-		account.setPassword(password);
-
 		userService.save(account);
 
 		return "login";

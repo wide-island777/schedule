@@ -11,6 +11,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -21,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 import com.hiro.shi.domain.model.Todo;
+import com.hiro.shi.domain.service.LoginUser;
 import com.hiro.shi.domain.service.TodoService;
 
 @Controller
@@ -52,9 +54,12 @@ public class TodoController {
 	 */
 	@RequestMapping(value = "list", method = RequestMethod.GET)
 	public String getAllTodo(Model model) {
+		
 		List<Todo> todoList = todoService.findAllTodo();
+		LoginUser loginUser = (LoginUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		model.addAttribute("statusItems", STATUS_ITEMS);
 		model.addAttribute("todoEntry", new Todo());
+//		model.addAttribute("loginUser", loginUser.getUser());
 		model.addAttribute("todoFind", new Todo());
 		model.addAttribute("todoList", todoList);
 		return "todo";
@@ -72,6 +77,8 @@ public class TodoController {
 		if (result.hasErrors()) {
 			return "redirect:list";
 		}
+		LoginUser loginUser = (LoginUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		todo.setCreateUserId(loginUser.getUser().getId());
 		todoService.save(todo);
 		// 一覧画面を返す
 		return "redirect:list";
