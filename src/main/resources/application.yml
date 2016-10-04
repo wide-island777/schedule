@@ -8,6 +8,6 @@ spring:
     cache: false
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: create-drop
 server:
   contextPath: /schedule
