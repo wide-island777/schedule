@@ -14,7 +14,7 @@ public class LoginUser extends org.springframework.security.core.userdetails.Use
 	private final User user;
 	
 	public LoginUser(User user) {
-		super(user.getName(), user.getPassword(),
+		super(user.getUsername(), user.getPassword(),
 					AuthorityUtils.createAuthorityList("ROLE_USER"));
 		this.user = user;
 	}

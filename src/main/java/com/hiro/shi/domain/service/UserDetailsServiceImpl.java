@@ -26,7 +26,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 		try {
 			// 入力したユーザIDから認証を行うユーザ情報を取得する
 			// 処理内容は省略
-			user = userRepo.findUser(username);
+			user = userRepo.findByusername(username);
 
 		} catch (Exception e) {
 			// 取得時にExceptionが発生した場合
@@ -37,7 +37,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 			throw new UsernameNotFoundException("ユーザ情報が取得できませんでした。");
 		}
 
-		logger.info("name: " + user.getName() + "password: " + user.getPassword());
+		logger.info("name: " + user.getUsername() + "password: " + user.getPassword());
 
 		// ユーザ情報が取得できたらSpring Securityで認証できる形で戻す→Userクラスもしくはそれを継承したクラス
 		return new LoginUser(user);

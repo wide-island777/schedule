@@ -36,10 +36,10 @@ public class LoginController {
 	@RequestMapping(value = "save", method = RequestMethod.POST)
 	public String save(@RequestParam(value = "name") String name, @RequestParam(value = "password") String password) {
 		User entryUser = new User();
-		entryUser.setName(name);
+		entryUser.setUsername(name);
 		entryUser.setPassword(new BCryptPasswordEncoder().encode(password));
 		User user = userService.save(entryUser);
-		logger.info("entryUserName : " + user.getName());
+		logger.info("entryUserName : " + user.getUsername());
 		logger.info("entryUserPass : " + user.getPassword());
 
 		return "login";
