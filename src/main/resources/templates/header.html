@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="ja">
-<head>
-<meta charset="UTF-8">
-<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
-<link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
-</head>
-<body>
-
-</body>
+    <nav th:fragment="common_header">
+        <div class="nav-wraper">
+            <a href="" class="brand-logo">MoguYo</a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li><a href="">Schedule</a></li>
+                <li><a href="">Todo</a></li>
+            </ul>
+        </div>
+    </nav>
 </html>

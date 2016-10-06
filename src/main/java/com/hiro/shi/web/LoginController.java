@@ -42,9 +42,9 @@ public class LoginController {
 		logger.info("entryUserName : " + user.getUsername());
 		logger.info("entryUserPass : " + user.getPassword());
 
-		return "login";
+		return "redirect:login";
 	}
-	
+
 	@RequestMapping(value = "auth", method = RequestMethod.POST)
 	public void auth() {
 	}
