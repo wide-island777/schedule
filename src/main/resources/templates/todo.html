@@ -16,9 +16,6 @@
 </head>
 <body class="loaded">
 	<div class="container">
-<!-- 
-		<div th:text="${loginUser.name}"></div>
- -->	
 		<!-- 検索用フォーム -->
 		<form action="/schedule/todo/find" method="get"
 			th:object="${todoFind}">
@@ -32,12 +29,11 @@
 					<input type="text" name="place" th:field="*{place}" />
 				</div>
 				<div class="col s4 input-field">
-					<i class="samll material-icons">spellcheck</i> <select
-						name="status">
-						<option th:each="statusItem: ${statusItems}"
-							th:text="${statusItem.key}" th:value="${statusItem.value}"
-							th:selected="${statusItem.value} == *{status}" />
-					</select> <label for="status">ステータス</label>
+					<i class="samll material-icons">spellcheck</i>
+					<select name="status">
+						<option th:each="statusItem: ${statusItems}" th:text="${statusItem.value}" th:value="${statusItem.key}" />
+					</select>
+					<label for="status">ステータス</label>
 				</div>
 				<div class="col s6 input-field">
 					<i class="samll material-icons">schedule</i> <label
@@ -50,8 +46,8 @@
 						name="planDateTo" th:field="*{planDateTo}" class="datepicker" />
 				</div>
 				<div class="col s6 input-field">
-					<i class="samll material-icons">done_all</i><label
-						for="finishDateFrom">終了日From</label> <input type="date"
+					<i class="samll material-icons">done_all</i>
+					<label for="finishDateFrom">終了日From</label> <input type="date"
 						name="finishDateFrom" th:field="*{finishDateFrom}"
 						class="datepicker" />
 				</div>
@@ -60,7 +56,15 @@
 						for="finishDateTo">終了日To</label> <input type="date"
 						name="finishDateTo" th:field="*{finishDateTo}" class="datepicker" />
 				</div>
-				<div class="col s4 input-field">
+				<div class="col s12 input-field">
+					<i class="samll material-icons">spellcheck</i>
+					<select name="created">
+						<option th:each="user: ${userList}"
+							th:text="${user.username}" th:value="${user.id}" />
+					</select>
+					<label for="created">作成者</label>
+				</div>
+				<div class="col s12 input-field">
 					<i class="samll material-icons">mode_edit</i>
 					<label for="memo">memo</label>
 					<input type="text" name="memo" th:field="*{memo}" />
@@ -69,12 +73,13 @@
 					<button type="submit" 
 						class="waves-effect waves-light btn" >search</button>
 				</div>
+				<!-- 登録フォーム表示 -->
+				<div class="col s6 input-field">
+					<a class="modal-trigger waves-effect waves-light btn"
+						href="#todoEntry">create</a>
+				</div>
 			</div>
 		</form>
-
-		<!-- 登録フォーム表示 -->
-		<a class="modal-trigger waves-effect waves-light btn"
-			href="#todoEntry">create</a>
 
 		<!-- やることリスト -->
 		<!-- やること登録と編集-->
@@ -157,7 +162,7 @@
 					<div class="input-field">
 						<i class="samll material-icons">spellcheck</i>
 						<select name="status">
-							<option th:each="statusItem: ${statusItems}" th:text="${statusItem.key}" th:value="${statusItem.value}" th:selected="${statusItem.value} == *{status}" />
+							<option th:each="statusItem: ${statusItems}" th:text="${statusItem.value}" th:value="${statusItem.key}" th:selected="${statusItem.value} == *{status}" />
 						</select>
 						<label for="status">ステータス</label>
 					</div>
@@ -169,9 +174,8 @@
 					</div>
 				</div>
 				<div class="modal-footer">
+					<input type="submit" value="create" class="modal-action modal-close waves-effect waves-green btn-flat" />
 					<input type="button" class=" modal-action modal-close waves-effect waves-green btn-flat" id="entryCancel" value="cancel" />
-					<input type="submit" value="create"
-						class="modal-action modal-close waves-effect waves-green btn-flat" />
 				</div>
 			</form>
 		</div>

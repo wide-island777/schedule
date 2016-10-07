@@ -1,5 +1,6 @@
 package com.hiro.shi.web;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -22,8 +23,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 import com.hiro.shi.domain.model.Todo;
+import com.hiro.shi.domain.model.User;
 import com.hiro.shi.domain.service.LoginUser;
 import com.hiro.shi.domain.service.TodoService;
+import com.hiro.shi.domain.service.UserService;
 
 @Controller
 @RequestMapping("/todo")
@@ -31,6 +34,9 @@ public class TodoController {
 
 	@Autowired
 	TodoService todoService;
+	
+	@Autowired
+	UserService userService;
 
 	private static Logger logger = LoggerFactory.getLogger(TodoController.class);
 
@@ -41,9 +47,10 @@ public class TodoController {
 		private static final long serialVersionUID = 1L;
 
 		{
-			put("未計画", "0");
-			put("計画中", "1");
-			put("達成済", "2");
+			put("", "");
+			put("0", "未計画");
+			put("1", "計画中");
+			put("2", "達成済");
 		}
 	});
 
@@ -55,11 +62,15 @@ public class TodoController {
 	@RequestMapping(value = "list", method = RequestMethod.GET)
 	public String getAllTodo(Model model) {
 		
+		// 検索用の作成者ドロップダウンを作成する
+		List<User> allUserList = new ArrayList<User>();
+		allUserList.add(new User());
+		allUserList.addAll(userService.findUserAll());
+
 		List<Todo> todoList = todoService.findAllTodo();
-		LoginUser loginUser = (LoginUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		model.addAttribute("statusItems", STATUS_ITEMS);
 		model.addAttribute("todoEntry", new Todo());
-//		model.addAttribute("loginUser", loginUser.getUser());
+		model.addAttribute("userList", allUserList);
 		model.addAttribute("todoFind", new Todo());
 		model.addAttribute("todoList", todoList);
 		return "todo";
@@ -98,6 +109,13 @@ public class TodoController {
 		return "redirect:list";
 	}
 
+	/**
+	 * 
+	 * @param model
+	 * @param findParam
+	 * @param result
+	 * @return
+	 */
 	@RequestMapping(value = "find", method = RequestMethod.GET)
 	public String findTodo(Model model, @ModelAttribute("todoFind") @Valid Todo findParam, BindingResult result) {
 		List<Todo> searchResult = todoService.searchTodo(findParam);

@@ -1,5 +1,7 @@
 package com.hiro.shi.domain.service;
 
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +19,10 @@ public class UserService {
 
 	public User save(User user) {
 		return userRepo.save(user);
+	}
+
+	public List<User> findUserAll() {
+		return userRepo.findAll();
 	}
 
 }
